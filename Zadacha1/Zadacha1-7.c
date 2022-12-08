@@ -8,22 +8,25 @@ int main()
 {
 	setlocale(LC_ALL, "Rus");
 	int choice_task = 0, go_choice = 0;
-	void (**menu)() = 0;
-	menu = (void**)calloc(2, sizeof(void(*)()));
-	menu[0] = first_task;
-	menu[1] = second_task;
-	do 
+	void (**menu)() = NULL;
+	menu = (void(**)())calloc(2, sizeof(void(*)()));
+	if (menu != NULL)
 	{
-		printf("Меню заданий:\n1.Дана строка. Найти количество слов в ней.\n2.Дан символ C и строка S. Удвоить каждое вхождение символа C в строку S.\n\nЕсли вы захотите закончить работу, то введите цифру <3>\n\nВыберите задание:");
-		check_choice_task(&choice_task);
-		if (choice_task == 3)
-			return 0;
-		system("cls");
-		printf("%d задача.\n\n", choice_task);
-		menu[choice_task - 1]();
-		printf("\n\nХочешь вернуться в меню?\n1-Да\n2-Нет\n\nОтвет:");
-		check_go_choice(&go_choice);
-		system("cls");
-	} while (go_choice == 1);
-	return 0;
+		menu[0] = first_task;
+		menu[1] = second_task;
+		do
+		{
+			printf("РњРµРЅСЋ Р·Р°РґР°РЅРёР№:\n1.Р”Р°РЅР° СЃС‚СЂРѕРєР°. РќР°Р№С‚Рё РєРѕР»РёС‡РµСЃС‚РІРѕ СЃР»РѕРІ РІ РЅРµР№.\n2.Р”Р°РЅ СЃРёРјРІРѕР» C Рё СЃС‚СЂРѕРєР° S. РЈРґРІРѕРёС‚СЊ РєР°Р¶РґРѕРµ РІС…РѕР¶РґРµРЅРёРµ СЃРёРјРІРѕР»Р° C РІ СЃС‚СЂРѕРєСѓ S.\n\nР•СЃР»Рё РІС‹ Р·Р°С…РѕС‚РёС‚Рµ Р·Р°РєРѕРЅС‡РёС‚СЊ СЂР°Р±РѕС‚Сѓ, С‚Рѕ РІРІРµРґРёС‚Рµ С†РёС„СЂСѓ <3>\n\nР’С‹Р±РµСЂРёС‚Рµ Р·Р°РґР°РЅРёРµ:");
+			check_choice_task(&choice_task);
+			if (choice_task == 3)
+				return 0;
+			system("cls");
+			printf("%d Р·Р°РґР°С‡Р°.\n\n", choice_task);
+			menu[choice_task - 1]();
+			printf("\n\nРҐРѕС‡РµС€СЊ РІРµСЂРЅСѓС‚СЊСЃСЏ РІ РјРµРЅСЋ?\n1-Р”Р°\n2-РќРµС‚\n\nРћС‚РІРµС‚:");
+			check_go_choice(&go_choice);
+			system("cls");
+		} while (go_choice == 1);
+		return 0;
+	}	     
 }
